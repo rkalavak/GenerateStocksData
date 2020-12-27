@@ -221,7 +221,6 @@ public class MissingDates {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -232,7 +231,6 @@ public class MissingDates {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 

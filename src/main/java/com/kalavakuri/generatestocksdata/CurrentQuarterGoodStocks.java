@@ -64,7 +64,6 @@ public class CurrentQuarterGoodStocks {
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 
 			fetchQuarterlyResults(stockVO);
@@ -109,7 +108,6 @@ public class CurrentQuarterGoodStocks {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -120,7 +118,6 @@ public class CurrentQuarterGoodStocks {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 

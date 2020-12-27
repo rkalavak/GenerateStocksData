@@ -63,7 +63,6 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 
 			fetchQuarterlyResults(stockVO);
@@ -110,7 +109,6 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -121,7 +119,6 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 

@@ -76,7 +76,6 @@ public class SharesAveragesWithoutCurrentPrice {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		}
 	}
 
@@ -278,7 +277,6 @@ public class SharesAveragesWithoutCurrentPrice {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -289,7 +287,6 @@ public class SharesAveragesWithoutCurrentPrice {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 

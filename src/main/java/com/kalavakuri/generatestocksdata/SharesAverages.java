@@ -76,7 +76,6 @@ public class SharesAverages {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		}
 	}
 
@@ -287,7 +286,6 @@ public class SharesAverages {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -298,7 +296,6 @@ public class SharesAverages {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 

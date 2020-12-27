@@ -77,7 +77,6 @@ public class BreakoutUpdate {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		}
 	}
 
@@ -226,7 +225,6 @@ public class BreakoutUpdate {
 					&& dayAvg50Calculated && dayAvg100Calculated && dayAvg150Calculated && dayAvg200Calculated)) {
 
 				System.out.println("Days missing");
-				System.exit(0);
 			}
 
 			if (todaysPrice >= dayAvg5 && todaysPrice >= dayAvg10 && todaysPrice >= dayAvg20 && todaysPrice >= dayAvg30
@@ -282,7 +280,6 @@ public class BreakoutUpdate {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != resultSet && !resultSet.isClosed())
@@ -293,7 +290,6 @@ public class BreakoutUpdate {
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-				System.exit(0);
 			}
 		}
 
@@ -361,10 +357,8 @@ public class BreakoutUpdate {
 					connection.rollback();
 			} catch (SQLException sqlException) {
 				sqlException.printStackTrace();
-				System.exit(0);
 			}
 			e.printStackTrace();
-			System.exit(0);
 		} finally {
 			try {
 				if (null != preparedStatement && !preparedStatement.isClosed())
@@ -373,7 +367,6 @@ public class BreakoutUpdate {
 					connection.close();
 			} catch (SQLException sqlException) {
 				sqlException.printStackTrace();
-				System.exit(0);
 			}
 		}
 	}
