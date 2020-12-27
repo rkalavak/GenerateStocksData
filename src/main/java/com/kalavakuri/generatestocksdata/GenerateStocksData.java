@@ -11,32 +11,33 @@ public class GenerateStocksData {
 
 		try {
 
-			System.out.println("\n" + "     Updation Started.");
+			System.out.print("\n\n" + "     Updation Started.");
 			AllGoodQuartersStocks.execute();
-			System.out.println("\n" + "     AllGoodQuartersStocks Updated.");
+			System.out.print("\n\n" + "     AllGoodQuartersStocks Updated.");
 			CurrentQuarterGoodStocks.execute();
-			System.out.println("\n" + "     CurrentQuarterGoodStocks Updated.");
+			System.out.print("\n\n" + "     CurrentQuarterGoodStocks Updated.");
 			CurrentQuarterGoodStocksWithGrowthPercentage.execute();
-			System.out.println("\n" + "     CurrentQuarterGoodStocksWithGrowthPercentage Updated.");
+			System.out.print("\n\n" + "     CurrentQuarterGoodStocksWithGrowthPercentage Updated.");
 			MissingDates.execute();
-			System.out.println("\n" + "     MissingDates Check Completed.");
+			System.out.print("\n\n" + "     MissingDates Check Completed.");
 			MissingDatesNse.execute();
-			System.out.println("\n" + "     MissingDatesNse Check Completed.");
+			System.out.print("\n\n" + "     MissingDatesNse Check Completed.");
 			SharesAverages.execute();
-			System.out.println("\n" + "     SharesAverages Updated.");
+			System.out.print("\n\n" + "     SharesAverages Updated.");
 			SharesAveragesWithoutCurrentPrice.execute();
-			System.out.println("\n" + "     SharesAveragesWithoutCurrentPrice Updated.");
+			System.out.print("\n\n" + "     SharesAveragesWithoutCurrentPrice Updated.");
 			GoodShares.execute();
-			System.out.println("\n" + "     GoodShares Updated.");
+			System.out.print("\n\n" + "     GoodShares Updated.");
 			GoodSharesNse.execute();
-			System.out.println("\n" + "     GoodSharesNse Updated.");
-			System.out.println("\n" + "     Updation Completed, Do You Want To Update Breakout.");
+			System.out.print("\n\n" + "     GoodSharesNse Updated.");
+			System.out.print("\n\n" + "     Updation Completed, Do You Want To Update Breakout: ");
 			response = scanner.nextLine();
 
 			if ("y".equalsIgnoreCase(response)) {
 
 				BreakoutUpdate.execute();
-				System.out.println("\n" + "     Breakout Updated, Press Any Key To Exit.");
+				System.out.print("\n\n" + "     Breakout Updated, Press Any Key To Exit.");
+				scanner.nextLine();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

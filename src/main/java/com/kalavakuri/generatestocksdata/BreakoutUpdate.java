@@ -240,7 +240,6 @@ public class BreakoutUpdate {
 		}
 
 		stockVOs.sort(Comparator.comparing(StockVO::getName));
-		stockVOs.forEach(stockVO -> System.out.println(stockVO.getName()));
 
 		insertData(stockVOs);
 	}

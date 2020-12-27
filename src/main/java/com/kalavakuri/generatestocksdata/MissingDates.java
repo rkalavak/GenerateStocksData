@@ -27,7 +27,7 @@ public class MissingDates {
 
 	public static void execute() throws Exception {
 
-		System.out.println("");
+		System.out.print("\n" + "     ");
 
 		Set<String> originalDays = getOriginalDays();
 
@@ -39,7 +39,7 @@ public class MissingDates {
 
 				if (!tradedDays.contains(day)) {
 
-					System.out.println("     " + stockVO.getName() + " " + day + " Missing");
+					System.out.print("\n" + "     " + stockVO.getName() + " " + day + " Missing");
 				}
 			}
 		}

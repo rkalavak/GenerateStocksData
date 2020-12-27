@@ -29,7 +29,7 @@ public class MissingDatesNse {
 
 	public static void execute() throws Exception {
 
-		System.out.println("");
+		System.out.print("\n" + "     ");
 
 		Set<String> originalDays = getOriginalDays();
 
@@ -41,7 +41,7 @@ public class MissingDatesNse {
 
 				if (!tradedDays.contains(day)) {
 
-					System.out.println("     " + stockVO.getName() + " " + day + " Missing");
+					System.out.print("\n" + "     " + stockVO.getName() + " " + day + " Missing");
 				}
 			}
 		}
