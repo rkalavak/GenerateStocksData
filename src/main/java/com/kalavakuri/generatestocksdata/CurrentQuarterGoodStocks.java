@@ -29,6 +29,7 @@ public class CurrentQuarterGoodStocks {
 
 		fetchQuarterlyGoodStocks();
 		StocksDataUtil.writeData("CurrentQuarterGoodStocks.txt", dataToStore.toString());
+		StocksDataUtil.writeData("GoodStocksWithNames.txt", dataToStore.toString());
 	}
 
 	private static void fetchQuarterlyGoodStocks() throws IOException {
