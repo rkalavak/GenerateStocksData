@@ -30,13 +30,17 @@ public class GenerateStocksData {
 			System.out.print("\n\n" + "     GoodShares Updated.");
 			GoodSharesNse.execute();
 			System.out.print("\n\n" + "     GoodSharesNse Updated.");
-			System.out.print("\n\n" + "     Updation Completed, Do You Want To Update Breakout: ");
+			System.out.print("\n\n" + "     Do You Want To Update Breakout: ");
 			response = scanner.nextLine();
 
 			if ("y".equalsIgnoreCase(response)) {
 
 				BreakoutUpdate.execute();
-				System.out.print("\n" + "     Breakout Updated, Press Any Key To Exit.");
+				System.out.print("\n" + "     Breakout Updated");
+				System.out.print("\n\n" + "     All Updated, Press Any Key To Exit...");
+				scanner.nextLine();
+			} else {
+				System.out.print("\n" + "     All Updated, Press Any Key To Exit...");
 				scanner.nextLine();
 			}
 		} catch (Exception e) {
