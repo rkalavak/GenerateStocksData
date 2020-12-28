@@ -36,7 +36,7 @@ public class GenerateStocksData {
 			if ("y".equalsIgnoreCase(response)) {
 
 				BreakoutUpdate.execute();
-				System.out.print("\n\n" + "     Breakout Updated, Press Any Key To Exit.");
+				System.out.print("\n" + "     Breakout Updated, Press Any Key To Exit.");
 				scanner.nextLine();
 			}
 		} catch (Exception e) {

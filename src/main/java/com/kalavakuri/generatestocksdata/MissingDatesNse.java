@@ -29,9 +29,8 @@ public class MissingDatesNse {
 
 	public static void execute() throws Exception {
 
-		System.out.print("\n" + "     ");
-
 		Set<String> originalDays = getOriginalDays();
+		boolean isDataFound = false;
 
 		for (StockVO stockVO : getStockAnalysisStocks()) {
 
@@ -41,6 +40,10 @@ public class MissingDatesNse {
 
 				if (!tradedDays.contains(day)) {
 
+					if (!isDataFound) {
+						System.out.print("\n" + "     ");
+						isDataFound = true;
+					}
 					System.out.print("\n" + "     " + stockVO.getName() + " " + day + " Missing");
 				}
 			}

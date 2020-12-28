@@ -25,6 +25,7 @@ public class BreakoutUpdate {
 	private static final String MONEY_CONTROL_HISTORY_URL = "https://www.moneycontrol.com/mc/widget/basicchart/get_chart_value?classic=true&sc_did=&dur=1yr";
 	private static final Map<String, List<MissedDatesVO>> missedDatesVOsGlobal = new HashMap<>();
 	private static java.util.Date oldDate = null;
+	private static StringBuilder dataToStore = new StringBuilder();
 
 	static {
 
@@ -238,8 +239,18 @@ public class BreakoutUpdate {
 		}
 
 		stockVOs.sort(Comparator.comparing(StockVO::getName));
-
 		insertData(stockVOs);
+
+		stockVOs.forEach(stockVO -> {
+			if (dataToStore.length() == 0) {
+
+				dataToStore.append(stockVO.getName());
+			} else {
+
+				dataToStore.append("\n" + stockVO.getName());
+			}
+		});
+		StocksDataUtil.writeData("BreakoutUpdate.txt", dataToStore.toString());
 	}
 
 	private static List<StockVO> getStockAnalysisStocks() {
