@@ -101,18 +101,21 @@ public class MissingDatesNse {
 
 			formatedDate = dateFormat.format(calculatedDate);
 
+			if (formatedDate.equals(formatedTodayDate)) {
+				break;
+			}
+
 			if ((calculatedDate.getDay() != 0 && calculatedDate.getDay() != 6)
 					|| (muhuratTrading.contains(formatedDate))) {
 
-				if ((!holidays.contains(formatedDate) && !formatedTodayDate.equals(formatedDate))
-						|| (muhuratTrading.contains(formatedDate))) {
+				if ((!holidays.contains(formatedDate)) || (muhuratTrading.contains(formatedDate))) {
 					days.add(formatedDate);
 				}
 			}
 
 			oldDate = calculatedDate;
 
-		} while (todayDate.compareTo(oldDate) != 0);
+		} while (true);
 
 		return days;
 	}
