@@ -1,6 +1,11 @@
 package com.kalavakuri.generatestocksdata;
 
+import java.net.URL;
 import java.util.Scanner;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class GenerateStocksData {
 
@@ -31,6 +36,7 @@ public class GenerateStocksData {
 			GoodSharesNse.execute();
 			System.out.print("\n\n" + "     GoodSharesNse Updated.");
 			System.out.print("\n\n" + "     Do You Want To Update Breakout: ");
+			playSound();
 			response = scanner.nextLine();
 
 			if ("y".equalsIgnoreCase(response)) {
@@ -48,5 +54,23 @@ public class GenerateStocksData {
 		} finally {
 			scanner.close();
 		}
+	}
+
+	private static void playSound() {
+
+		new Thread(() -> {
+
+			try {
+
+				URL url = GenerateStocksData.class.getClassLoader().getResource("Alert.wav");
+				AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+				Clip clip = AudioSystem.getClip();
+				clip.open(audioIn);
+				clip.start();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start();
 	}
 }
