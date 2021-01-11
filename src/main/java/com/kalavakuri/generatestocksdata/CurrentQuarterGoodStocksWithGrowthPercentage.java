@@ -146,7 +146,8 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 
 		if (tableHead.text().trim().equals("") || !tableHeadText.contains("Jun 2019")
 				|| !tableHeadText.contains("Sep 2019") || !tableHeadText.contains("Dec 2019")
-				|| !tableHeadText.contains("Mar 2020")) {
+				|| !tableHeadText.contains("Mar 2020") || !tableHeadText.contains("Jun 2020")
+				|| !tableHeadText.contains("Sep 2020")) {
 
 			response = Jsoup.connect(STOCK_SCREENER_STANDALONE_URL.replace("company/", "company/" + stockVO.getNseId()))
 					.ignoreContentType(true)
@@ -168,7 +169,8 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 		tableHeadText = tableHeadRowData.text();
 
 		if (!tableHeadText.contains("Jun 2019") || !tableHeadText.contains("Sep 2019")
-				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")) {
+				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")
+				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")) {
 
 			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
 		}
@@ -178,13 +180,13 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 			if (dataToStore.length() == 0) {
 
 				dataToStore.append(stockVO.getName() + "   " + stockVO.getSalesGrowthPercentage() + "   "
-						+ stockVO.getNetProfitGrowthPercentage() + "   "
-						+ (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1"));
+						+ stockVO.getNetProfitGrowthPercentage() + "   " + (tableHeadText.contains("Dec 2020") ? "Q3"
+								: (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1")));
 			} else {
 
 				dataToStore.append("\n" + stockVO.getName() + "   " + stockVO.getSalesGrowthPercentage() + "   "
-						+ stockVO.getNetProfitGrowthPercentage() + "   "
-						+ (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1"));
+						+ stockVO.getNetProfitGrowthPercentage() + "   " + (tableHeadText.contains("Dec 2020") ? "Q3"
+								: (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1")));
 			}
 		}
 	}

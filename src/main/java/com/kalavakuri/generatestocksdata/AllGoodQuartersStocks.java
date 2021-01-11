@@ -147,7 +147,8 @@ public class AllGoodQuartersStocks {
 
 		if (tableHead.text().trim().equals("") || !tableHeadText.contains("Jun 2019")
 				|| !tableHeadText.contains("Sep 2019") || !tableHeadText.contains("Dec 2019")
-				|| !tableHeadText.contains("Mar 2020")) {
+				|| !tableHeadText.contains("Mar 2020") || !tableHeadText.contains("Jun 2020")
+				|| !tableHeadText.contains("Sep 2020")) {
 
 			response = Jsoup.connect(STOCK_SCREENER_STANDALONE_URL.replace("company/", "company/" + stockVO.getNseId()))
 					.ignoreContentType(true)
@@ -169,12 +170,29 @@ public class AllGoodQuartersStocks {
 		tableHeadText = tableHeadRowData.text();
 
 		if (!tableHeadText.contains("Jun 2019") || !tableHeadText.contains("Sep 2019")
-				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")) {
+				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")
+				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")) {
 
 			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
 		}
 
-		if (tableHeadText.contains("Sep 2020")) {
+		if (tableHeadText.contains("Dec 2020")) {
+
+			quarter = "Q3";
+
+			isGoodStock = isGoodStock(table, 1);
+
+			if (isGoodStock) {
+
+				isGoodStock = isGoodStock(table, 2);
+
+				if (isGoodStock) {
+
+					isGoodStock = isGoodStock(table, 3);
+				}
+			}
+
+		} else if (tableHeadText.contains("Sep 2020")) {
 
 			quarter = "Q2";
 
