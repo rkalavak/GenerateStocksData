@@ -55,7 +55,26 @@ public class MissingDates {
 		String formatedDate = null;
 
 		Set<String> holidays = new HashSet<>();
-		holidays.add("2019-12-25");
+
+		// Year 2021 Holiday List
+
+		holidays.add("2021-01-26");
+		holidays.add("2021-03-11");
+		holidays.add("2021-03-29");
+		holidays.add("2021-04-02");
+		holidays.add("2021-04-14");
+		holidays.add("2021-04-21");
+		holidays.add("2021-05-13");
+		holidays.add("2021-07-21");
+		holidays.add("2021-08-19");
+		holidays.add("2021-09-10");
+		holidays.add("2021-10-15");
+		holidays.add("2021-11-04");
+		holidays.add("2021-11-05");
+		holidays.add("2021-11-19");
+
+		// Year 2020 Holiday List
+
 		holidays.add("2020-02-21");
 		holidays.add("2020-03-10");
 		holidays.add("2020-04-02");
@@ -69,7 +88,7 @@ public class MissingDates {
 		holidays.add("2020-11-30");
 		holidays.add("2020-12-25");
 
-		// Last Year 2019 List
+		// Year 2019 Holiday List
 
 		holidays.add("2019-03-04");
 		holidays.add("2019-03-21");
@@ -89,11 +108,12 @@ public class MissingDates {
 		holidays.add("2019-11-12");
 		holidays.add("2019-12-25");
 
-		// 2 Years Back
+		// 3 Years Back
 
 		holidays.add("2018-12-25");
 
 		Set<String> muhuratTrading = new HashSet<>();
+		muhuratTrading.add("2021-11-04");
 		muhuratTrading.add("2020-11-14");
 		muhuratTrading.add("2019-10-27");
 

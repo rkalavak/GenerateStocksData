@@ -57,6 +57,26 @@ public class MissingDatesNse {
 		String formatedDate = null;
 
 		Set<String> holidays = new HashSet<>();
+
+		// Year 2021 Holiday List
+
+		holidays.add("26-Jan-2021");
+		holidays.add("11-Mar-2021");
+		holidays.add("29-Mar-2021");
+		holidays.add("02-Apr-2021");
+		holidays.add("14-Apr-2021");
+		holidays.add("21-Apr-2021");
+		holidays.add("13-May-2021");
+		holidays.add("21-Jul-2021");
+		holidays.add("19-Aug-2021");
+		holidays.add("10-Sep-2021");
+		holidays.add("15-Oct-2021");
+		holidays.add("04-Nov-2021");
+		holidays.add("05-Nov-2021");
+		holidays.add("19-Nov-2021");
+
+		// Year 2020 Holiday List
+
 		holidays.add("25-Dec-2019");
 		holidays.add("21-Feb-2020");
 		holidays.add("10-Mar-2020");
@@ -72,6 +92,7 @@ public class MissingDatesNse {
 		holidays.add("25-Dec-2020");
 
 		Set<String> muhuratTrading = new HashSet<>();
+		muhuratTrading.add("04-Nov-2021");
 		muhuratTrading.add("14-Nov-2020");
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
