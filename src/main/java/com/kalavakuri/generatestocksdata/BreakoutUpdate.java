@@ -60,16 +60,6 @@ public class BreakoutUpdate {
 			// TATA Consumer Products
 			missedDates = new ArrayList<>();
 			missedDatesVO = new MissedDatesVO();
-			missedDatesVO.setDate(simpleDateFormat.parse("2020-02-27"));
-			missedDatesVO.setStockPrice(363.30);
-			missedDates.add(missedDatesVO);
-
-			missedDatesVO = new MissedDatesVO();
-			missedDatesVO.setDate(simpleDateFormat.parse("2020-02-28"));
-			missedDatesVO.setStockPrice(346.15);
-			missedDates.add(missedDatesVO);
-
-			missedDatesVO = new MissedDatesVO();
 			missedDatesVO.setDate(simpleDateFormat.parse("2020-03-02"));
 			missedDatesVO.setStockPrice(338.80);
 			missedDates.add(missedDatesVO);
