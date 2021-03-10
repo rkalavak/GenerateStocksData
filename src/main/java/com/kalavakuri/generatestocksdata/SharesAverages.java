@@ -55,15 +55,6 @@ public class SharesAverages {
 
 			missedDatesVOsGlobal.put("Tata Steel", missedDates);
 
-			// TATA Consumer Products
-			missedDates = new ArrayList<>();
-			missedDatesVO = new MissedDatesVO();
-			missedDatesVO.setDate(simpleDateFormat.parse("2020-03-02"));
-			missedDatesVO.setStockPrice(338.80);
-			missedDates.add(missedDatesVO);
-
-			missedDatesVOsGlobal.put("TATA Consumer Products", missedDates);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
