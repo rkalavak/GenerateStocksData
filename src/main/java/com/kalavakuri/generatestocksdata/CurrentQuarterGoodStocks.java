@@ -146,7 +146,7 @@ public class CurrentQuarterGoodStocks {
 		if (tableHead.text().trim().equals("") || !tableHeadText.contains("Jun 2019")
 				|| !tableHeadText.contains("Sep 2019") || !tableHeadText.contains("Dec 2019")
 				|| !tableHeadText.contains("Mar 2020") || !tableHeadText.contains("Jun 2020")
-				|| !tableHeadText.contains("Sep 2020")) {
+				|| !tableHeadText.contains("Sep 2020") || !tableHeadText.contains("Dec 2020")) {
 
 			response = Jsoup.connect(STOCK_SCREENER_STANDALONE_URL.replace("company/", "company/" + stockVO.getNseId()))
 					.ignoreContentType(true)
@@ -169,7 +169,8 @@ public class CurrentQuarterGoodStocks {
 
 		if (!tableHeadText.contains("Jun 2019") || !tableHeadText.contains("Sep 2019")
 				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")
-				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")) {
+				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")
+				|| !tableHeadText.contains("Dec 2020")) {
 
 			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
 		}

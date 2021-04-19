@@ -147,7 +147,7 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 		if (tableHead.text().trim().equals("") || !tableHeadText.contains("Jun 2019")
 				|| !tableHeadText.contains("Sep 2019") || !tableHeadText.contains("Dec 2019")
 				|| !tableHeadText.contains("Mar 2020") || !tableHeadText.contains("Jun 2020")
-				|| !tableHeadText.contains("Sep 2020")) {
+				|| !tableHeadText.contains("Sep 2020") || !tableHeadText.contains("Dec 2020")) {
 
 			response = Jsoup.connect(STOCK_SCREENER_STANDALONE_URL.replace("company/", "company/" + stockVO.getNseId()))
 					.ignoreContentType(true)
@@ -170,7 +170,8 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 
 		if (!tableHeadText.contains("Jun 2019") || !tableHeadText.contains("Sep 2019")
 				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")
-				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")) {
+				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")
+				|| !tableHeadText.contains("Dec 2020")) {
 
 			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
 		}
@@ -185,8 +186,10 @@ public class CurrentQuarterGoodStocksWithGrowthPercentage {
 			} else {
 
 				dataToStore.append("\n" + stockVO.getName() + "   " + stockVO.getSalesGrowthPercentage() + "   "
-						+ stockVO.getNetProfitGrowthPercentage() + "   " + (tableHeadText.contains("Dec 2020") ? "Q3"
-								: (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1")));
+						+ stockVO.getNetProfitGrowthPercentage() + "   "
+						+ (tableHeadText.contains("Mar 2021") ? "Q4"
+								: (tableHeadText.contains("Dec 2020") ? "Q3"
+										: (tableHeadText.contains("Sep 2020") ? "Q2" : "Q1"))));
 			}
 		}
 	}
