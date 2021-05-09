@@ -4,8 +4,17 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import oracle.jdbc.internal.OracleTypes;
 
 public class StocksDataUtil {
 
@@ -28,5 +37,47 @@ public class StocksDataUtil {
 		bufferedReader.flush();
 		fileReader.close();
 		bufferedReader.close();
+	}
+
+	public static List<StockVO> getMoneyControlSymbols() {
+
+		List<StockVO> stocks = new ArrayList<>();
+
+		Connection connection = null;
+		CallableStatement callableStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "#knagamma1");
+			callableStatement = connection.prepareCall("{call SP_FETCH_STOCKS_DETAILS(?,?,?)}");
+			callableStatement.setInt(1, 0);
+			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+			callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
+			callableStatement.execute();
+
+			resultSet = (ResultSet) callableStatement.getObject(2);
+
+			while (resultSet.next()) {
+				StockVO stock = new StockVO();
+				stock.setMoneyControlSymbol(resultSet.getString("MONEY_CONTROL_SYMBOL"));
+				stocks.add(stock);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (null != resultSet && !resultSet.isClosed())
+					resultSet.close();
+				if (null != callableStatement && !callableStatement.isClosed())
+					callableStatement.close();
+				if (null != connection && !connection.isClosed())
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return stocks;
 	}
 }

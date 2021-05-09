@@ -1,12 +1,6 @@
 package com.kalavakuri.generatestocksdata;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +28,7 @@ public class CurrentQuarterGoodStocks {
 
 	private static void fetchQuarterlyGoodStocks() throws IOException {
 
-		List<StockVO> stocks = getMoneyControlSymbols();
+		List<StockVO> stocks = StocksDataUtil.getMoneyControlSymbols();
 
 		for (StockVO stockVO : stocks) {
 
@@ -68,60 +62,6 @@ public class CurrentQuarterGoodStocks {
 
 			fetchQuarterlyResults(stockVO);
 		}
-	}
-
-	private static List<StockVO> getMoneyControlSymbols() {
-
-		List<StockVO> stocks = new ArrayList<>();
-
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "#knagamma1");
-			preparedStatement = connection.prepareStatement("SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_AUTO UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_BANK UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_COMMODITIES UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_CPSE UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_ENERGY UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_FINANCIAL_SERVICES UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_FMCG UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_INDIA_CONSUMPTION UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_INFRASTRUCTURE UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_IT UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_MEDIA UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_METAL UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_MNC UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_PHARMA UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_PRIVATE_BANK UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_PSE UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_PSU_BANK UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_REALTY UNION \r\n"
-					+ "SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_SERVICES_SECTOR");
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				StockVO stock = new StockVO();
-				stock.setMoneyControlSymbol(resultSet.getString("MONEY_CONTROL_SYMBOL"));
-				stocks.add(stock);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (null != resultSet && !resultSet.isClosed())
-					resultSet.close();
-				if (null != preparedStatement && !preparedStatement.isClosed())
-					preparedStatement.close();
-				if (null != connection && !connection.isClosed())
-					connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return stocks;
 	}
 
 	private static void fetchQuarterlyResults(StockVO stockVO) throws IOException {
