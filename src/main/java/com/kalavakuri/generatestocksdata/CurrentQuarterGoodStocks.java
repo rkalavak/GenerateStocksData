@@ -15,8 +15,6 @@ import com.google.gson.Gson;
 public class CurrentQuarterGoodStocks {
 
 	private static String MONEY_CONTROL_STOCK_URL = "https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/";
-	private static String STOCK_SCREENER_CONSOLIDATED_URL = "https://www.screener.in/company//consolidated/";
-	private static String STOCK_SCREENER_STANDALONE_URL = "https://www.screener.in/company//";
 	private static StringBuilder dataToStore = new StringBuilder();
 
 	public static void execute() throws IOException {
@@ -66,54 +64,10 @@ public class CurrentQuarterGoodStocks {
 
 	private static void fetchQuarterlyResults(StockVO stockVO) throws IOException {
 
-		Response response = Jsoup
-				.connect(STOCK_SCREENER_CONSOLIDATED_URL.replace("company/", "company/" + stockVO.getNseId()))
-				.ignoreContentType(true)
-				.userAgent(
-						"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-				.timeout(90 * 1000).followRedirects(true).maxBodySize(0).execute();
-
-		Document doc = response.parse();
+		Document doc = StocksDataUtil.getStockResponse(stockVO.getName());
 
 		Element quarterlyDivision = doc.getElementById("quarters");
 		Element table = quarterlyDivision.getElementsByTag("table").get(0);
-		Element tableHead = table.getElementsByTag("thead").get(0);
-		Element tableHeadRow = tableHead.getElementsByTag("tr").get(0);
-		Elements tableHeadRowData = tableHeadRow.getElementsByTag("th");
-
-		String tableHeadText = tableHeadRowData.text();
-
-		if (tableHead.text().trim().equals("") || !tableHeadText.contains("Jun 2019")
-				|| !tableHeadText.contains("Sep 2019") || !tableHeadText.contains("Dec 2019")
-				|| !tableHeadText.contains("Mar 2020") || !tableHeadText.contains("Jun 2020")
-				|| !tableHeadText.contains("Sep 2020") || !tableHeadText.contains("Dec 2020")) {
-
-			response = Jsoup.connect(STOCK_SCREENER_STANDALONE_URL.replace("company/", "company/" + stockVO.getNseId()))
-					.ignoreContentType(true)
-					.userAgent(
-							"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36")
-					.timeout(90 * 1000).followRedirects(true).maxBodySize(0).execute();
-
-			doc = response.parse();
-
-			quarterlyDivision = doc.getElementById("quarters");
-			table = quarterlyDivision.getElementsByTag("table").get(0);
-			tableHead = table.getElementsByTag("thead").get(0);
-
-			tableHeadRow = tableHead.getElementsByTag("tr").get(0);
-			tableHeadRowData = tableHeadRow.getElementsByTag("th");
-
-		}
-
-		tableHeadText = tableHeadRowData.text();
-
-		if (!tableHeadText.contains("Jun 2019") || !tableHeadText.contains("Sep 2019")
-				|| !tableHeadText.contains("Dec 2019") || !tableHeadText.contains("Mar 2020")
-				|| !tableHeadText.contains("Jun 2020") || !tableHeadText.contains("Sep 2020")
-				|| !tableHeadText.contains("Dec 2020")) {
-
-			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
-		}
 
 		if (isQ1Good(table)) {
 

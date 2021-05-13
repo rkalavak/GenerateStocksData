@@ -12,7 +12,11 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.jsoup.nodes.Document;
 
 import oracle.jdbc.internal.OracleTypes;
 
@@ -20,6 +24,7 @@ public class StocksDataUtil {
 
 	private static NumberFormat formatter = new DecimalFormat("#0.00");
 	private static final String FILE_BASE_URL = "C:\\Personal\\Stock Analysis\\";
+	private static Map<String, Document> stockNameAndResponse = new HashMap<>();
 
 	public static double format(double value) {
 		return Double.parseDouble(formatter.format(value));
@@ -79,5 +84,15 @@ public class StocksDataUtil {
 		}
 
 		return stocks;
+	}
+
+	public static void putStockNameAndResponse(String stockName, Document document) {
+
+		stockNameAndResponse.put(stockName, document);
+	}
+
+	public static Document getStockResponse(String stockName) {
+
+		return stockNameAndResponse.get(stockName);
 	}
 }

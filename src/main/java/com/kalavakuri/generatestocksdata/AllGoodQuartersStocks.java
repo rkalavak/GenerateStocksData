@@ -60,6 +60,12 @@ public class AllGoodQuartersStocks {
 			}
 
 			fetchQuarterlyResults(stockVO);
+
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -116,6 +122,8 @@ public class AllGoodQuartersStocks {
 
 			System.out.println(stockVO.getName() + " " + stockVO.getMoneyControlSymbol() + " " + stockVO.getNseId());
 		}
+
+		StocksDataUtil.putStockNameAndResponse(stockVO.getName(), doc);
 
 		if (tableHeadText.contains("Mar 2021")) {
 
