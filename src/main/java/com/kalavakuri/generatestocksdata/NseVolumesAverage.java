@@ -41,6 +41,8 @@ public class NseVolumesAverage {
 			stockName = (String) stockData.get("SC_FULLNM");
 
 			stockVO.setName(stockName);
+			
+			System.out.println(stockName);
 
 			Response historyResponse = Jsoup.connect(NSE_HISTORY_URL.replace("symbol=", "symbol=" + nseSymbol))
 					.ignoreContentType(true)
