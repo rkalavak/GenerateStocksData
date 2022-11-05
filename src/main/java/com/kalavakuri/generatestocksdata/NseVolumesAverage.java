@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 public class NseVolumesAverage {
 
 	private static final String MONEY_CONTROL_STOCK_URL = "https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/";
-	private static StringBuilder dataToStore = new StringBuilder();
+	private static final StringBuilder dataToStore = new StringBuilder();
 
 	public static void main(String[] args) throws Exception {
 

@@ -22,10 +22,8 @@ public class HistoricalRSIStockCalculator {
 		String nseSymbol = "";
 		String stockName = "";
 
-		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "IDF01")
-				.ignoreContentType(true)
-				.userAgent(
-						"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
+		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "NBC").ignoreContentType(true).userAgent(
+				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
 				.timeout(90 * 1000).header("Accept", "application/json").followRedirects(true).maxBodySize(0).execute();
 
 		Document docStock = responseStock.parse();
@@ -70,7 +68,7 @@ public class HistoricalRSIStockCalculator {
 			for (; i <= size; i++) {
 
 				String[] split = eachRow[i].split(",");
-				
+
 				finalDate = split[2].replace("\"", "").trim();
 				double currentValue = Double.parseDouble(split[8].replace("\"", "").trim());
 				if (i != k) {
@@ -88,11 +86,12 @@ public class HistoricalRSIStockCalculator {
 				}
 				previousValue = currentValue;
 			}
-			
+
 			double pointsGainAverage = pointsGain.stream().mapToDouble(v -> v).average().getAsDouble();
 			double pointsLostAverage = pointsLost.stream().mapToDouble(v -> v).average().getAsDouble();
-			double finalCalculation = StocksDataUtil.format(100 - (100 / (1 + (pointsGainAverage / pointsLostAverage))));
-			
+			double finalCalculation = StocksDataUtil
+					.format(100 - (100 / (1 + (pointsGainAverage / pointsLostAverage))));
+
 			System.out.println(finalDate + "\t" + finalCalculation);
 		}
 	}
