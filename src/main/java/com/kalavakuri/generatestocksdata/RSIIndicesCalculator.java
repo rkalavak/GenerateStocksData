@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class RSIIndicesCalculator {
 
 	private static final Map<String, String> indexNamesAndTables = new HashMap<>();
+	private static final StringBuilder dataToStore = new StringBuilder();
 
 	static {
 		indexNamesAndTables.put("NIFTY 50", "MKT_NIFTY_50_STOCKS");
@@ -44,7 +45,7 @@ public class RSIIndicesCalculator {
 		indexNamesAndTables.put("NIFTY INDIA CONSUMPTION", "MKT_INDIA_CONSUMPTION");
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		Map<String, Double> indexRSI = new HashMap<>();
 
@@ -81,9 +82,23 @@ public class RSIIndicesCalculator {
 				.sorted(Map.Entry.<String, Double>comparingByValue().reversed()).collect(Collectors.toMap(
 						Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
-		result.forEach((k, v) -> System.out.println(k + "\t" + v));
-		System.out.println("RSI Average: "
+		result.forEach((key, value) -> {
+
+			if (dataToStore.length() == 0) {
+
+				dataToStore.append(key + "\t" + value);
+			} else {
+
+				dataToStore.append("\n" + key + "\t" + value);
+			}
+		});
+
+		dataToStore.append("\n" + "RSI Average: "
 				+ StocksDataUtil.format(result.values().stream().mapToDouble(v -> v).average().getAsDouble()));
+
+		StocksDataUtil.writeData("RSIPreviousTradeIndicesCalculation.txt", dataToStore.toString());
+
+		System.out.println("Success...");
 	}
 
 	private static List<Double> getIndexData(String tableName) {
