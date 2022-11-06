@@ -21,7 +21,7 @@ public class TodayRSIStockSumsCalculatorJson {
 
 	public static void main(String[] args) throws Exception {
 
-		Map<String, List<Double>> RSISums = new HashMap<>();
+		Map<String, List<Double>> rsiSums = new HashMap<>();
 		Map<String, String> cookies = getCookies();
 
 		for (StockVO stockVO : StocksDataUtil.getMoneyControlSymbols()) {
@@ -98,10 +98,10 @@ public class TodayRSIStockSumsCalculatorJson {
 			sumsList.add(pointsGainSum);
 			sumsList.add(pointsLostSum);
 
-			RSISums.put(stockName, sumsList);
+			rsiSums.put(stockName, sumsList);
 		}
 
-		RSISums.forEach((key, value) -> {
+		rsiSums.forEach((key, value) -> {
 
 			if (dataToStore.length() == 0) {
 
