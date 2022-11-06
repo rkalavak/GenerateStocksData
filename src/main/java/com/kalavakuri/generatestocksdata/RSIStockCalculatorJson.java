@@ -117,7 +117,7 @@ public class RSIStockCalculatorJson {
 			}
 		});
 
-		StocksDataUtil.writeData("RSI.txt", dataToStore.toString());
+		StocksDataUtil.writeData("RSIPreviousTradeStocksCalculation.txt", dataToStore.toString());
 	}
 
 	private static Map<String, String> getCookies() throws IOException {

@@ -112,7 +112,7 @@ public class TodayRSIStockSumsCalculatorJson {
 			}
 		});
 
-		StocksDataUtil.writeData("RSISums.txt", dataToStore.toString());
+		StocksDataUtil.writeData("RSIPreviousTradeSumsCalculation.txt", dataToStore.toString());
 	}
 
 	private static Map<String, String> getCookies() throws IOException {
