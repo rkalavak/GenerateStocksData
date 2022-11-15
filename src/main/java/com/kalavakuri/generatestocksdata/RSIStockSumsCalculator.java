@@ -13,7 +13,7 @@ import org.jsoup.nodes.Element;
 
 import com.google.gson.Gson;
 
-public class TodayRSIStockSumsCalculator {
+public class RSIStockSumsCalculator {
 
 	private static final String MONEY_CONTROL_STOCK_URL = "https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/";
 	private static final String NSE_HISTORY_URL = "https://www1.nseindia.com/products/dynaContent/common/productsSymbolMapping.jsp?symbol=&segmentLink=3&symbolCount=2&series=ALL&dateRange=1month&fromDate=&toDate=&dataType=PRICEVOLUMEDELIVERABLE";
