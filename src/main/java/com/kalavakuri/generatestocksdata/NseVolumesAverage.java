@@ -59,7 +59,7 @@ public class NseVolumesAverage {
 
 			stockName = (String) stockData.get("SC_FULLNM");
 
-			stockVO.setName(stockName + " " + stockVO.getMoneyControlSymbol());
+			stockVO.setName(stockName);
 
 			// System.out.println(stockName);
 
@@ -77,7 +77,7 @@ public class NseVolumesAverage {
 			List<Map<String, String>> stockHistoryDetails = gsonStockHistory.fromJson(docStockHistory.text(),
 					List.class);
 			if (stockHistoryDetails.size() == 0) {
-				System.out.println("Failed: " + stockName);
+				System.out.println("Failed: " + stockName + " " + stockVO.getMoneyControlSymbol());
 				continue;
 			}
 
