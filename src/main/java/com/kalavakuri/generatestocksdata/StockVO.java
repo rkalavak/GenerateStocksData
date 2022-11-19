@@ -7,6 +7,7 @@ public class StockVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String moneyControlSymbol;
+	private String nirmalBangSymbol;
 	private String nseId;
 	private String name;
 	private double salesGrowthPercentage;
@@ -18,6 +19,14 @@ public class StockVO implements Serializable {
 
 	public void setMoneyControlSymbol(String moneyControlSymbol) {
 		this.moneyControlSymbol = moneyControlSymbol;
+	}
+
+	public String getNirmalBangSymbol() {
+		return nirmalBangSymbol;
+	}
+
+	public void setNirmalBangSymbol(String nirmalBangSymbol) {
+		this.nirmalBangSymbol = nirmalBangSymbol;
 	}
 
 	public String getNseId() {
