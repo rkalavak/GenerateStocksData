@@ -90,9 +90,10 @@ public class NseVolumesAverage {
 				deliveryVolumesPer.add(Double.parseDouble(history.get("DVDLVolumeper")));
 			}
 
-			double tradedQuantityAvg = volumes.stream().mapToDouble(v -> v).average().getAsDouble();
-			double deliveryToTradedQuantityAvg = deliveryVolumesPer.stream().mapToDouble(v -> v).average()
-					.getAsDouble();
+			double tradedQuantityAvg = StocksDataUtil
+					.format(volumes.stream().mapToDouble(v -> v).average().getAsDouble());
+			double deliveryToTradedQuantityAvg = StocksDataUtil
+					.format(deliveryVolumesPer.stream().mapToDouble(v -> v).average().getAsDouble());
 
 			if (dataToStore.length() == 0) {
 
