@@ -80,6 +80,7 @@ public class NseVolumesAverage {
 				System.out.println("Failed: " + stockName);
 				continue;
 			}
+
 			List<Double> volumes = new ArrayList<Double>();
 			List<Double> deliveryVolumesPer = new ArrayList<Double>();
 
