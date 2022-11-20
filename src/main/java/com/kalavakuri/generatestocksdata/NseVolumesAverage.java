@@ -61,7 +61,7 @@ public class NseVolumesAverage {
 
 			stockVO.setName(stockName);
 
-			// System.out.println(stockName);
+			System.out.println(stockName);
 
 			Response responseStockHistory = Jsoup
 					.connect(NIRMAL_BANG_DELIVERY_URL.replace("FinCode=", "FinCode=" + stockVO.getNirmalBangSymbol()))
@@ -76,10 +76,6 @@ public class NseVolumesAverage {
 			Gson gsonStockHistory = new Gson();
 			List<Map<String, String>> stockHistoryDetails = gsonStockHistory.fromJson(docStockHistory.text(),
 					List.class);
-			if (stockHistoryDetails.size() == 0) {
-				System.out.println("Failed: " + stockName + " " + stockVO.getMoneyControlSymbol());
-				continue;
-			}
 
 			List<Double> volumes = new ArrayList<Double>();
 			List<Double> deliveryVolumesPer = new ArrayList<Double>();
@@ -120,7 +116,7 @@ public class NseVolumesAverage {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SYSTEM", "#knagamma1");
 			preparedStatement = connection.prepareStatement(
-					"SELECT MONEY_CONTROL_SYMBOL, NIRMALBANG_SYMBOL FROM MKT_MONEYCONTROL_NIRMALBANG");
+					"SELECT MONEY_CONTROL_SYMBOL, NIRMALBANG_SYMBOL FROM MKT_MONEYCONTROL_NIRMALBANG WHERE MONEY_CONTROL_SYMBOL NOT IN (SELECT MONEY_CONTROL_SYMBOL FROM MKT_NIFTY_FILTERED)");
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				StockVO stock = new StockVO();
@@ -146,6 +142,5 @@ public class NseVolumesAverage {
 		}
 
 		return stocks;
-
 	}
 }
