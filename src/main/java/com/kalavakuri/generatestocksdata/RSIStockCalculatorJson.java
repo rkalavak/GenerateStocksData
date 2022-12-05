@@ -50,7 +50,7 @@ public class RSIStockCalculatorJson {
 
 			stockVO.setName(stockName);
 
-			System.out.print(stockName);
+			System.out.print(stockVO.getMoneyControlSymbol() + " - " + stockName);
 
 			Response historyResponse = Jsoup.connect(NSE_HISTORY_URL.replace("symbol=", "symbol=" + nseSymbol))
 					.ignoreContentType(true).referrer(REFERRER_URL.replace("symbol=", "symbol=" + nseSymbol))
