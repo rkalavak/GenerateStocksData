@@ -119,7 +119,7 @@ public class UpdateIndex {
 
 				HoldIndexDataVO holdIndexDataVO = entry.getValue();
 				statement.addBatch("INSERT INTO " + entry.getKey()
-						+ "(TRADE_DATE, OPEN_VALUE, HIGH_VALUE, LOW_VALUE, CLOSE_VALUE) VALUES(TO_DATE('16-12-2022'),"
+						+ "(TRADE_DATE, OPEN_VALUE, HIGH_VALUE, LOW_VALUE, CLOSE_VALUE) VALUES(TO_DATE('19-12-2022'),"
 						+ holdIndexDataVO.getOpenValue() + "," + holdIndexDataVO.getHighValue() + ","
 						+ holdIndexDataVO.getLowValue() + "," + holdIndexDataVO.getCloseValue() + ")");
 			}
