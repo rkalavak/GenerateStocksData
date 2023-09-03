@@ -22,7 +22,7 @@ public class HistoricalRSIStockCalculator {
 		String nseSymbol = "";
 		String stockName = "";
 
-		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "NBC").ignoreContentType(true).userAgent(
+		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "LGB").ignoreContentType(true).userAgent(
 				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
 				.timeout(90 * 1000).header("Accept", "application/json").followRedirects(true).maxBodySize(0).execute();
 

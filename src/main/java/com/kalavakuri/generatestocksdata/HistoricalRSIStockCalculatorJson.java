@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 public class HistoricalRSIStockCalculatorJson {
 
 	private static final String MONEY_CONTROL_STOCK_URL = "https://priceapi.moneycontrol.com/pricefeed/nse/equitycash/";
-	private static final String NSE_HISTORY_URL = "https://www.nseindia.com/api/historical/cm/equity?symbol=&series=[%22EQ%22]&from=05-08-2022&to=05-11-2022";
+	private static final String NSE_HISTORY_URL = "https://www.nseindia.com/api/historical/cm/equity?symbol=&series=[%23EQ%23]&from=01-01-2022&to=24-06-2023";
 	private static final String REFERRER_URL = "https://www.nseindia.com/get-quotes/equity?symbol=";
 
 	public static void main(String[] args) throws Exception {
@@ -23,7 +23,7 @@ public class HistoricalRSIStockCalculatorJson {
 		String stockName = "";
 		Map<String, String> cookies = getCookies();
 
-		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "NLC").ignoreContentType(true).userAgent(
+		Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "LGB").ignoreContentType(true).userAgent(
 				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
 				.timeout(90 * 1000).header("Accept", "application/json").followRedirects(true).maxBodySize(0).execute();
 
