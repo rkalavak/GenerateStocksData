@@ -25,11 +25,10 @@ public class HistoricalAverageRSIStockCalculatorJson {
 
 		for (int k = 0; k <= 100; k++) {
 
-			for (StockVO stockVO : StocksDataUtil.getMoneyControlSymbols()) {
 
 				String nseSymbol = "";
 
-				Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + stockVO.getMoneyControlSymbol())
+				Response responseStock = Jsoup.connect(MONEY_CONTROL_STOCK_URL + "RI")
 						.ignoreContentType(true)
 						.userAgent(
 								"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36")
@@ -107,7 +106,6 @@ public class HistoricalAverageRSIStockCalculatorJson {
 					if (i == k)
 						break;
 				}
-			}
 			System.out.println(date + "\t"
 					+ StocksDataUtil.format(rsiValues.stream().mapToDouble(v -> v).average().getAsDouble()));
 			rsiValues.clear();
