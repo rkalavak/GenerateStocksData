@@ -25,7 +25,7 @@ public class FindFailedSymbols {
 
 	static {
 
-		File file = new File(FILE_BASE_URL.concat("TodaysBestStocks.txt"));
+		File file = new File(FILE_BASE_URL.concat("TodayBestStocks.txt"));
 
 		BufferedReader bufferedReader = null;
 		try {

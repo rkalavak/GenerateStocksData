@@ -27,7 +27,7 @@ public class OpenToCurrentPriceInfo {
 
 	static {
 
-		File file = new File(FILE_BASE_URL.concat("TodaysBestStocks.txt"));
+		File file = new File(FILE_BASE_URL.concat("TodayBestStocks.txt"));
 
 		BufferedReader bufferedReader = null;
 		try {
@@ -78,7 +78,7 @@ public class OpenToCurrentPriceInfo {
 					Map<?, ?> tradeDetails = gso.fromJson(docHistory.text(), Map.class);
 					Map<?, ?> priceInfo = (Map<?, ?>) tradeDetails.get("priceInfo");
 
-					double lastPrice = (Double) priceInfo.get("lastPrice");
+					double lastPrice = (Double) priceInfo.get("close");
 					double previousClose = (Double) priceInfo.get("previousClose");
 					double open = (Double) priceInfo.get("open");
 
