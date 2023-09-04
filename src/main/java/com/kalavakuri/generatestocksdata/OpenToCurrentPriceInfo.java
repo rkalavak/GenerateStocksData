@@ -78,7 +78,7 @@ public class OpenToCurrentPriceInfo {
 					Map<?, ?> tradeDetails = gso.fromJson(docHistory.text(), Map.class);
 					Map<?, ?> priceInfo = (Map<?, ?>) tradeDetails.get("priceInfo");
 
-					double lastPrice = (Double) priceInfo.get("close");
+					double lastPrice = (Double) priceInfo.get("lastPrice");
 					double previousClose = (Double) priceInfo.get("previousClose");
 					double open = (Double) priceInfo.get("open");
 
